@@ -1,0 +1,75 @@
+Command: ninja all
+[1/9] Performing build step for 'bootloader'
+[1/1] cd "/Users/alex/Documents/TP IoT/TP-IoT-WiFi/build/bootloader/esp-idf/esptool_py" && /Users/alex/.espressif/python_env/idf5.5_py3.13_env/bin/python /Users/alex/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /Users/alex/Documents/TP\ IoT/TP-IoT-WiFi/build/bootloader/bootloader.bin
+Bootloader binary size 0x6650 bytes. 0x9b0 bytes (9%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+[4/9] Completed 'bootloader'
+[5/9] Linking C static library esp-idf/main/libmain.a
+[6/9] Generating ld/sections.ld
+info: INFO: Symbol GPIO_RANGE_MAX defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:3
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:3
+info: INFO: Symbol 433MHZ defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:17
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:17
+info: INFO: Symbol 866MHZ defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:21
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:21
+info: INFO: Symbol 915MHZ defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:25
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:25
+info: INFO: Symbol OTHER defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:29
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:29
+info: INFO: Symbol OTHER_FREQUENCY defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:35
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:35
+info: INFO: Symbol ADVANCED defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:43
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:43
+info: INFO: Symbol CODING_RATE defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:49
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:49
+info: INFO: Symbol BANDWIDTH defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:57
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:57
+info: INFO: Symbol SF_RATE defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:65
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:65
+info: INFO: Symbol MISO_GPIO defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:73
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:73
+info: INFO: Symbol SCK_GPIO defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:82
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:82
+info: INFO: Symbol MOSI_GPIO defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:91
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:91
+info: INFO: Symbol CS_GPIO defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:100
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:100
+info: INFO: Symbol RST_GPIO defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:109
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:109
+info: INFO: Symbol SPI2_HOST defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:123
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:123
+info: INFO: Symbol SPI3_HOST defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:127
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:127
+info: INFO: Choice FREQUENCY defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:12
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:12
+info: INFO: Choice SPI_HOST defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/managed_components/nopnop2002__sx127x/Kconfig.projbuild:118
+    /Users/alex/Documents/TP IoT/TP-IoT-WiFi/components/lora/Kconfig.projbuild:118
+[7/9] Linking CXX executable TP-IoT-WiFi.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.9.dev6
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /Users/alex/Documents/TP IoT/TP-IoT-WiFi/build/TP-IoT-WiFi.bin
+[9/9] cd "/Users/alex/Documents/TP IoT/TP-IoT-WiFi/build/esp-idf/esptool_py" && /Users/alex/.espressif/python_env/idf5.5_py3.13_env/bin/python /Users/alex/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /Users/alex/Documents/TP\ IoT/TP-IoT-WiFi/build/partition_table/partition-table.bin /Users/alex/Documents/TP\ IoT/TP-IoT-WiFi/build/TP-IoT-WiFi.bin
+TP-IoT-WiFi.bin binary size 0xdc1e0 bytes. Smallest app partition is 0x100000 bytes. 0x23e20 bytes (14%) free.

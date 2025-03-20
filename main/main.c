@@ -7,6 +7,20 @@
 #include "nvs_flash.h"
 #include "mqtt_client.h"
 #include "lora.h"
+#include "driver/i2c_master.h"
+
+#define I2C_MASTER_SCL_IO           CONFIG_I2C_MASTER_SCL       /*!< GPIO number used for I2C master clock */
+#define I2C_MASTER_SDA_IO           CONFIG_I2C_MASTER_SDA       /*!< GPIO number used for I2C master data  */
+#define I2C_MASTER_NUM              I2C_NUM_0                   /*!< I2C port number for master dev */
+#define I2C_MASTER_FREQ_HZ          CONFIG_I2C_MASTER_FREQUENCY /*!< I2C master clock frequency */
+#define I2C_MASTER_TX_BUF_DISABLE   0                           /*!< I2C master doesn't need buffer */
+#define I2C_MASTER_RX_BUF_DISABLE   0                           /*!< I2C master doesn't need buffer */
+#define I2C_MASTER_TIMEOUT_MS       1000
+
+#define MPU9250_SENSOR_ADDR         0x68        /*!< Address of the MPU9250 sensor */
+#define MPU9250_WHO_AM_I_REG_ADDR   0x75        /*!< Register addresses of the "who am I" register */
+#define MPU9250_PWR_MGMT_1_REG_ADDR 0x6B        /*!< Register addresses of the power management register */
+#define MPU9250_RESET_BIT           7
 
 #define WIFI_SSID "S24"
 #define WIFI_PASS "Palalala"
@@ -38,8 +52,8 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
         case MQTT_EVENT_DATA:
             ESP_LOGI(TAG, "📥 Message reçu MQTT reçu: %.*s",
             event->data_len, event->data);
-            lora_send_packet((uint8_t *)event->data, event->data_len);
-            ESP_LOGI(LORA_TAG, "✅ Message LoRa envoyé !");
+            // lora_send_packet((uint8_t *)event->data, event->data_len);
+            // ESP_LOGI(LORA_TAG, "✅ Message LoRa envoyé !");
         default:
             break;
     }
@@ -105,9 +119,35 @@ void task_rx(void *pvParameters)
         if (lora_received()) {
             int rxLen = lora_receive_packet(buf, sizeof(buf));
             ESP_LOGI(pcTaskGetName(NULL), "%d byte packet received:[%.*s]", rxLen, rxLen, buf);
+            // Check if the first 8 bytes match MQTT_PWD
+            if (rxLen >= 8 && strncmp((char *)buf, MQTT_PWD, 8) == 0) {
+                ESP_LOGI(pcTaskGetName(NULL), "First 8 bytes match MQTT_PWD");
+            } else {
+                ESP_LOGI(pcTaskGetName(NULL), "First 8 bytes do not match MQTT_PWD");
+            }
         }
         vTaskDelay(1); // Avoid WatchDog alerts
     } // end while
+}
+
+static void i2c_master_init(i2c_master_bus_handle_t *bus_handle, i2c_master_dev_handle_t *dev_handle)
+{
+    i2c_master_bus_config_t bus_config = {
+        .i2c_port = I2C_MASTER_NUM,
+        .sda_io_num = I2C_MASTER_SDA_IO,
+        .scl_io_num = I2C_MASTER_SCL_IO,
+        .clk_source = I2C_CLK_SRC_DEFAULT,
+        .glitch_ignore_cnt = 7,
+        .flags.enable_internal_pullup = true,
+    };
+    ESP_ERROR_CHECK(i2c_new_master_bus(&bus_config, bus_handle));
+
+    i2c_device_config_t dev_config = {
+        .dev_addr_length = I2C_ADDR_BIT_LEN_7,
+        .device_address = MPU9250_SENSOR_ADDR,
+        .scl_speed_hz = I2C_MASTER_FREQ_HZ,
+    };
+    ESP_ERROR_CHECK(i2c_master_bus_add_device(*bus_handle, &dev_config, dev_handle));
 }
 
 void task_tx(void *pvParameters) {
@@ -116,7 +156,7 @@ void task_tx(void *pvParameters) {
     ESP_LOGI(LORA_TAG, "✅ Message envoyé !");
     vTaskDelay(pdMS_TO_TICKS(5000));  // Pause de 5s avant le prochain envoi
     }
- 
+
 void app_main() {
     wifi_init();
     if (lora_init() == 0) {
@@ -149,4 +189,16 @@ void app_main() {
 
     xTaskCreate(&task_rx, "RX", 1024*3, NULL, 5, NULL);
     // xTaskCreate(&task_tx, "TX", 1024*3, NULL, 5, NULL);
+    uint8_t data[2];
+    i2c_master_bus_handle_t bus_handle;
+    i2c_master_dev_handle_t dev_handle;
+    i2c_master_init(&bus_handle, &dev_handle);
+    ESP_LOGI(TAG, "I2C initialized successfully");
+    ESP_ERROR_CHECK(mpu9250_register_read(dev_handle, MPU9250_WHO_AM_I_REG_ADDR, data, 1));
+    ESP_LOGI(TAG, "WHO_AM_I = %X", data[0]);
+    ESP_ERROR_CHECK(mpu9250_register_write_byte(dev_handle, MPU9250_PWR_MGMT_1_REG_ADDR, 1 << MPU9250_RESET_BIT));
+
+    ESP_ERROR_CHECK(i2c_master_bus_rm_device(dev_handle));
+    ESP_ERROR_CHECK(i2c_del_master_bus(bus_handle));
+    ESP_LOGI(TAG, "I2C de-initialized successfully");
 }

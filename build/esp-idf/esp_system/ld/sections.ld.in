@@ -10,7 +10,7 @@
  */
 /*
  * Automatically generated file. DO NOT EDIT.
- * Espressif IoT Development Framework (ESP-IDF) 5.5.0 Configuration Header
+ * Espressif IoT Development Framework (ESP-IDF) 5.4.0 Configuration Header
  */
        
 /* List of deprecated options */
@@ -208,8 +208,16 @@ SECTIONS
     . = 0x3C0;
     KEEP(*(.DoubleExceptionVector.text));
     . = 0x400;
-    KEEP(*(._invalid_pc_placeholder.text));
+    _invalid_pc_placeholder = ABSOLUTE(.);
     *(.*Vector.literal)
+    *(.UserEnter.literal);
+    *(.UserEnter.text);
+    . = ALIGN (16);
+    *(.entry.literal)
+    *(.entry.text)
+    *(.init.literal)
+    *(.init)
+    _init_end = ABSOLUTE(.);
   } > iram0_0_seg
   .iram0.text :
   {

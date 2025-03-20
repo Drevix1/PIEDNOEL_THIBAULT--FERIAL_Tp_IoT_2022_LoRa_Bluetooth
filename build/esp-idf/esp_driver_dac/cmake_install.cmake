@@ -1,4 +1,4 @@
-# Install script for directory: /Users/alex/esp/esp-idf/components/esp_driver_dac
+# Install script for directory: /Users/alex/esp/v5.4/esp-idf/components/esp_driver_dac
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

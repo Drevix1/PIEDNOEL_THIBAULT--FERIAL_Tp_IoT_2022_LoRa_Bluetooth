@@ -1,4 +1,4 @@
-# Install script for directory: /Users/alex/esp/esp-idf/components/newlib
+# Install script for directory: /Users/alex/esp/v5.4/esp-idf/components/newlib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/alex/Documents/TP IoT/TP-IoT-WiFi/build/esp-idf/newlib/src/port/cmake_install.cmake")
+  include("/Users/alex/Documents/TP IoT/TP-IoT-WiFi/build/esp-idf/newlib/port/cmake_install.cmake")
 endif()
 

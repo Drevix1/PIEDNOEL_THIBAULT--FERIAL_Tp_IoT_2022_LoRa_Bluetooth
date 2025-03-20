@@ -2,7 +2,7 @@ dependencies:
   idf:
     source:
       type: idf
-    version: 5.5.0
+    version: 5.4.0
   nopnop2002/sx127x:
     component_hash: fb90b0a825a5eff6df3946f8218f0c921828916af57ee8ed3071c5971a0da867
     dependencies: []

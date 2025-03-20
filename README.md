@@ -4,12 +4,12 @@ Ce code est destiné à un microcontrôleur ESP32 utilisant FreeRTOS pour gérer
 
 Les fonctionnalités principales du code sont :
 
-    Connexion au Wi-Fi : Se connecte à un réseau Wi-Fi défini par WIFI_SSID et WIFI_PASS.
-    Client MQTT : Se connecte à un broker MQTT (mqtt://test.mosquitto.org), publie un message et s'abonne à un topic.
-    Réception de messages MQTT et transmission via LoRa : Dès qu'un message MQTT est reçu, il est immédiatement retransmis via LoRa.
-    Configuration de LoRa : Initialise LoRa sur la fréquence 868 MHz, active le CRC, et configure les paramètres de transmission (facteur d'étalement, largeur de bande, taux de codage).
-    Tâche de réception LoRa : Écoute en continu les messages LoRa reçus.
-    Tâche de transmission LoRa (optionnelle) : Peut envoyer un message LoRa périodiquement (désactivée par défaut).
+    - Connexion au Wi-Fi : Se connecte à un réseau Wi-Fi défini par WIFI_SSID et WIFI_PASS.
+    - Client MQTT : Se connecte à un broker MQTT (mqtt://test.mosquitto.org), publie un message et s'abonne à un topic.
+    - Réception de messages MQTT et transmission via LoRa : Dès qu'un message MQTT est reçu, il est immédiatement retransmis via LoRa.
+    - Configuration de LoRa : Initialise LoRa sur la fréquence 868 MHz, active le CRC, et configure les paramètres de transmission (facteur d'étalement, largeur de bande, taux de codage).
+    - Tâche de réception LoRa : Écoute en continu les messages LoRa reçus.
+    - Tâche de transmission LoRa (optionnelle) : Peut envoyer un message LoRa périodiquement (désactivée par défaut).
 
 Explication détaillée des fonctions
 1. void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
